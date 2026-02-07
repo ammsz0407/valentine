@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💘 For Harshu</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Comic Sans MS', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      z-index: 10;
+      position: relative;
+    }
+
+    h1 {
+      color: #ff4d6d;
+    }
+
+    p {
+      color: #444;
+      font-size: 18px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 25px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      margin: 10px;
+      transition: transform 0.2s;
+      position: relative;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .yes {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    .no {
+      background-color: #ddd;
+      position: absolute;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 24px;
+      animation: floatUp linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      top: -10px;
+      font-size: 20px;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card" id="card">
+    <h1>Hey Handsome 💕</h1>
+    <p>
+      I have a very serious question 😌
+    </p>
+    <p>
+     
+You da best bae-itch !!<br>
+And you make my days awesome 🥰
+    </p>
+    <p>
+      Will you be my Valentine? 💌
+    </p>
+
+    <button class="yes" onclick="sayYes()">YES 💖</button>
+    <button class="no" id="noBtn">NO 😅</button>
+  </div>
+
+  <script>
+    /* YES button: fake loading + confetti + reveal */
+    function sayYes() {
+      document.getElementById("card").innerHTML = `
+        <h1>Processing… ⏳</h1>
+        <p>Verifying answer…</p>
+        <p>Checking cuteness levels…</p>
+      `;
+
+      setTimeout(() => {
+        document.getElementById("card").innerHTML = `
+          <h1>APPROVED 💘</h1>
+          <p>
+            Congratulations Harshu 😌<br><br>
+            You are officially my Valentine 💕
+          </p>
+          <p>
+            I love you ♥️🫂<br>
+           
+          </p>
+        `;
+        launchConfetti();
+      }, 2500);
+    }
+
+    /* Runaway NO button + changing text */
+    const noBtn = document.getElementById("noBtn");
+    const noTexts = [
+      "Nice try 😏",
+      "Nope 💕",
+      "Still no 😌",
+      "You wish 😂",
+      "Not happening 💘"
+    ];
+
+    noBtn.addEventListener("mouseover", () => {
+      const card = document.getElementById("card");
+      const rect = card.getBoundingClientRect();
+
+      noBtn.innerText = noTexts[Math.floor(Math.random() * noTexts.length)];
+
+      const x = Math.random() * (rect.width - 100);
+      const y = Math.random() * (rect.height - 50);
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+
+    /* Floating hearts */
+    const hearts = ["💖", "💘", "💕", "❤️", "🌸"];
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+    setInterval(createHeart, 400);
+
+    /* Confetti */
+    function launchConfetti() {
+      for (let i = 0; i < 40; i++) {
+        const conf = document.createElement("div");
+        conf.className = "confetti";
+        conf.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+        conf.style.left = Math.random() * 100 + "vw";
+        conf.style.animationDuration = (2 + Math.random() * 3) + "s";
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 5000);
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
